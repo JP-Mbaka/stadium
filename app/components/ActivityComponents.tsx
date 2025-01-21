@@ -5,13 +5,16 @@ import { ActivityProps, MyEvents } from "../constants";
 const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
   return (
     <div>
-      <div className="border  border-b-emerald-800 border-transparent w-full">
+      <div className="border  border-b-emerald-800 border-transparent w-full max-sm:flex max-sm:justify-between">
         <h3 className="font-montserratAlt text-xl sm:text-2xl font-bold py-2 pl-8">
           {name}
         </h3>
+        <button className="hidden max-sm:block  text-emerald-800 font-poppins px-5 py-2 rounded-md">
+          See All
+        </button>
       </div>
-      <div className="flex justify-between items-center px-8 py-4">
-        <div className="flex flex-wrap gap-5">
+      <div className="flex justify-between  items-center px-8 py-4">
+        <div className="w-full flex max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
           {activity.map((events: MyEvents) => (
             <div key={events.title}>
               <CardComponent
@@ -23,7 +26,7 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
             </div>
           ))}
         </div>
-        <button className="border border-emerald-800 text-emerald-800 font-poppins px-5 py-2 rounded-md">
+        <button className="max-sm:hidden border border-emerald-800 text-emerald-800 font-poppins px-5 py-2 rounded-md">
           See All
         </button>
       </div>

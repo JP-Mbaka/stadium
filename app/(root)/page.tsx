@@ -12,7 +12,7 @@ const eventsList: MyEvents[] = [
 const Home = () => {
   return (
     <div>
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full max-sm:hidden">
         <div className="flex justify-evenly border rounded-md px-2 py-1.5 bg-slate-100">
           <input placeholder="search" className="sm:w-[450px] bg-slate-100" />
           <Image src="/vercel.svg" alt="Vercel logo" height={25} width={25} />

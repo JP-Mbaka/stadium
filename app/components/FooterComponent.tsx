@@ -6,7 +6,7 @@ import { NavLinkProps } from "../constants";
 
 const FooterComponent = () => {
   return (
-    <footer className="bg-emerald-800 w-full h-40 py-4 px-24 flex justify-evenly">
+    <footer className="bg-emerald-800 w-full h-40 max-sm:h-80 py-4 px-24 flex justify-evenly max-sm:flex-col-reverse">
       <div className="flex flex-col gap-2 justify-center items-center">
         <div className="flex items-center gap-2">
           <div className="dark:bg-emerald-800 bg-white rounded-full p-1">
@@ -27,21 +27,30 @@ const FooterComponent = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4 pt-6">
-        <div className="flex justify-evenly border rounded-md px-2 py-1.5 bg-slate-100">
-          <input placeholder="search" className="sm:w-[450px] bg-slate-100" />
-          <Image src="/vercel.svg" alt="Vercel logo" height={25} width={25} />
+      <div className="flex flex-col items-center gap-4 pt-6">
+        <div className="flex justify-evenly items-center border rounded-md shadow-md px-2 py-1.5 bg-slate-100">
+          <input
+            placeholder="yourmail@example.com"
+            className="sm:w-[450px] bg-slate-100"
+          />
+          <div className="w-20"></div>
+          <button className="bg-emerald-800 text-white font-semibold shadow-md p-2 rounded-md">
+            Subscribe
+          </button>
         </div>
         <div className="flex items-center">
-          <ul className="flex justify-evenly gap-8 w-[350px] pointer-events-auto">
+          <ul className="flex justify-evenly max-sm:justify-center gap-8 max-sm:gap-3.5 w-[350px] pointer-events-auto">
             {navLinkData.map((data: NavLinkProps) => (
               <li
                 key={data.link}
-                className="font-poppins text-lg text-slate-100"
+                className="font-poppins text-lg max-sm:text-md font-semibold text-slate-100"
               >
                 <Link href={data.linkURL}>{data.link}</Link>
               </li>
             ))}
+            <li className="font-poppins text-lg max-sm:text-md font-semibold text-slate-100">
+              <Link href="#">FEEDBACK</Link>
+            </li>
           </ul>
         </div>
       </div>

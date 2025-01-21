@@ -18,10 +18,10 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type }) => {
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className=" relative block text-left max-sm:w-full">
       <button
         onClick={toggleDropdown}
-        className="inline-flex justify-between w-48 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none"
+        className="inline-flex justify-between w-48 md:w-40 max-sm:w-[350px] px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none"
       >
         {selectedOption || type === "event"
           ? "Select an event"
@@ -42,7 +42,7 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-10 w-48 mt-2 origin-top-right bg-white border border-gray-300 divide-y divide-gray-100 rounded-md shadow-lg">
+        <div className="absolute right-0 z-10 w-48 md:w-40 mt-2 origin-top-right bg-white border border-gray-300 divide-y divide-gray-100 rounded-md shadow-lg">
           {options.dropdowns.map((option, index) => (
             <div
               key={index}
