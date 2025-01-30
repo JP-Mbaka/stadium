@@ -1,5 +1,5 @@
 "use client";
-import { DropdownProps } from "@/app/constants";
+import { DropdownProps } from "@/app/types";
 import React, { useState } from "react";
 
 const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type }) => {

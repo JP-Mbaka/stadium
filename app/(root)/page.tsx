@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { MyEvents } from "../constants";
+import { MyEvents } from "../types";
 import ActivityComponents from "../components/ActivityComponents";
 
 const eventsList: MyEvents[] = [

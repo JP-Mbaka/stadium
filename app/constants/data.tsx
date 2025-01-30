@@ -1,4 +1,4 @@
-import { DropdownProps, NavLinkProps } from ".";
+import { DropdownProps, NavLinkProps } from "../types";
 
 export const navLinkData: NavLinkProps[] = [
   { link: "TICKETS", linkURL: "#" },

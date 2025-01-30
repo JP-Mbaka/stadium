@@ -1,6 +1,6 @@
 import React from "react";
 import CardComponent from "./CardComponent";
-import { ActivityProps, MyEvents } from "../constants";
+import { ActivityProps, MyEvents } from "../types";
 
 const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
   return (
@@ -13,8 +13,8 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
           See All
         </button>
       </div>
-      <div className="flex justify-between  items-center px-8 py-4">
-        <div className="w-full flex max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
+      <div className="flex justify-between md:justify-end flex-wrap gap-4 items-center px-8 py-4">
+        <div className="w-full flex  flex-wrap max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
           {activity.map((events: MyEvents) => (
             <div key={events.title}>
               <CardComponent
@@ -26,7 +26,7 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
             </div>
           ))}
         </div>
-        <button className="max-sm:hidden border border-emerald-800 text-emerald-800 font-poppins px-5 py-2 rounded-md">
+        <button className="max-sm:hidden border border-emerald-800 text-emerald-800 w-[100px] font-poppins px-2 py-2 rounded-md">
           See All
         </button>
       </div>

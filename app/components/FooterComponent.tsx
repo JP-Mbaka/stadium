@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { navLinkData, socialLinkData } from "../constants/data";
 import Link from "next/link";
-import { NavLinkProps } from "../constants";
+import { NavLinkProps } from "../types";
 
 const FooterComponent = () => {
   return (
@@ -28,13 +28,13 @@ const FooterComponent = () => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-4 pt-6">
-        <div className="flex justify-evenly items-center border rounded-md shadow-md px-2 py-1.5 bg-slate-100">
+        <div className="flex justify-evenly max-sm:w-[300px] md:w-[60%] items-center border rounded-md shadow-md px-2 py-1.5 bg-slate-100">
           <input
             placeholder="yourmail@example.com"
             className="sm:w-[450px] bg-slate-100"
           />
           <div className="w-20"></div>
-          <button className="bg-emerald-800 text-white font-semibold shadow-md p-2 rounded-md">
+          <button className="bg-emerald-800 text-white max-sm:text-[12px] md:text-[12px] font-semibold shadow-md p-2 rounded-md">
             Subscribe
           </button>
         </div>
@@ -43,7 +43,7 @@ const FooterComponent = () => {
             {navLinkData.map((data: NavLinkProps) => (
               <li
                 key={data.link}
-                className="font-poppins text-lg max-sm:text-md font-semibold text-slate-100"
+                className="font-poppins text-lg max-sm:text-md md:max-sm:text-md font-semibold text-slate-100"
               >
                 <Link href={data.linkURL}>{data.link}</Link>
               </li>
