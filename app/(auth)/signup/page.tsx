@@ -1,7 +1,11 @@
-import React from "react";
+import AuthFormCard from "@/app/components/AuthFormCard";
 
 function SignUpPage() {
-  return <div>SignUpPage</div>;
+  return (
+    <section>
+      <AuthFormCard type="Sign-Up" />
+    </section>
+  );
 }
 
 export default SignUpPage;

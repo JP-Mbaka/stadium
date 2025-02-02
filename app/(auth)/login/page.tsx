@@ -1,7 +1,11 @@
-import React from "react";
+import AuthFormCard from "@/app/components/AuthFormCard";
 
 function LoginPage() {
-  return <div>LoginPage</div>;
+  return (
+    <>
+      <AuthFormCard type="Login" />
+    </>
+  );
 }
 
 export default LoginPage;
