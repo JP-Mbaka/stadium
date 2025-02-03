@@ -19,14 +19,16 @@ export default function RootLayout({
     <main lang="en" className="h-svh">
       <section>
         <nav className="flex justify-between border px-24 max-sm:px-8 py-4 shadow-md">
-          <div className="flex items-center gap-2 ">
-            <div className="dark:bg-emerald-800 rounded-full p-1">
-              <Image src="/stadium.png" alt="logo" height={45} width={40} />
+          <Link href={"/"}>
+            <div className="flex items-center gap-2 ">
+              <div className="dark:bg-emerald-800 rounded-full p-1">
+                <Image src="/stadium.png" alt="logo" height={45} width={40} />
+              </div>
+              <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl px-2">
+                Stadium
+              </h1>
             </div>
-            <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl px-2">
-              Stadium
-            </h1>
-          </div>
+          </Link>
           <div className="flex items-center max-sm:hidden">
             <ul className="flex justify-start gap-8 w-[350px] pointer-events-auto">
               {navLinkData.map((data: NavLinkProps) => (
@@ -69,7 +71,7 @@ export default function RootLayout({
             <SideButtonComponent title="Sign-in" />
           </div>
         </section>
-        <section className="w-[80%] pt-8 relative overflow-y-auto max-sm:w-full">
+        <section className="w-[80%] h-full pt-8 relative overflow-y-auto max-sm:w-full">
           {children}
         </section>
       </section>

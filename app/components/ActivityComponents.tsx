@@ -1,6 +1,7 @@
 import React from "react";
 import CardComponent from "./CardComponent";
 import { ActivityProps, MyEvents } from "../types";
+import Link from "next/link";
 
 const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
   return (
@@ -17,12 +18,14 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
         <div className="w-full flex  flex-wrap max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
           {activity.map((events: MyEvents) => (
             <div key={events.title}>
-              <CardComponent
-                title={events.title}
-                date={events.date}
-                price={events.price}
-                rate={events.rate}
-              />
+              <Link href={`/item/${events.rate}`}>
+                <CardComponent
+                  title={events.title}
+                  date={events.date}
+                  price={events.price}
+                  rate={events.rate}
+                />
+              </Link>
             </div>
           ))}
         </div>

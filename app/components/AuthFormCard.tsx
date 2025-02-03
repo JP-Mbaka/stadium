@@ -1,6 +1,5 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,7 +9,7 @@ import { AuthFormSchema } from "../types";
 import CustomInput from "./ui/customInput";
 
 function AuthFormCard({ type }: { type: string }) {
-useState
+// useState
   const formSchema = AuthFormSchema(type);
   const formS = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
