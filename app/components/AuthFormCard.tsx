@@ -6,17 +6,19 @@ import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import Link from "next/link";
 import { AuthFormSchema } from "../types";
-import CustomInput from "./ui/customInput";
+import AuthCustomInput from "./ui/customInput";
 
 function AuthFormCard({ type }: { type: string }) {
-// useState
+  // useState
   const formSchema = AuthFormSchema(type);
   const formS = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { email: "", password: "" },
   });
 
-  function onSubmit() {}
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log("GGGHHGHH:", data);
+  }
   return (
     <section className="flex-center shadow-2xl w-96 rounded-sm px-10 pb-10 pt-5">
       <Link href={"/"}>
@@ -24,7 +26,7 @@ function AuthFormCard({ type }: { type: string }) {
           <div className="dark:bg-emerald-800 rounded-full p-1  w-auto">
             <Image src="/stadium.png" alt="logo" height={45} width={40} />
           </div>
-          <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl px-2">
+          <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl pt-1 px-2">
             Stadium
           </h1>
         </div>
@@ -38,41 +40,41 @@ function AuthFormCard({ type }: { type: string }) {
             onSubmit={formS.handleSubmit(onSubmit)}
             className="flex  flex-col gap-4"
           >
-            <CustomInput
+            <AuthCustomInput
               name="email"
               control={formS.control}
               placeholder="Email"
             />
-            <CustomInput
+            <AuthCustomInput
               name="password"
               control={formS.control}
               placeholder="Password"
             />
-            {type !== "Login" && (
+            {type !== "Sign-Up" && (
               <>
-                <CustomInput
+                <AuthCustomInput
                   name="confirmPassword"
                   control={formS.control}
                   placeholder="Confirm Password"
                 />
                 <div className="flex">
-                  <CustomInput
+                  <AuthCustomInput
                     name="firstName"
                     control={formS.control}
                     placeholder="Firstname"
                   />
-                  <CustomInput
+                  <AuthCustomInput
                     name="lastName"
                     control={formS.control}
                     placeholder="Lastname"
                   />
                 </div>
-                <CustomInput
+                <AuthCustomInput
                   name="state"
                   control={formS.control}
                   placeholder="State/Region"
                 />
-                <CustomInput
+                <AuthCustomInput
                   name="country"
                   control={formS.control}
                   placeholder="Country"

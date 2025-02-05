@@ -36,3 +36,11 @@ export const AuthFormSchema = (type: string) =>
     state: type === "" ? z.string().optional() : z.string().max(20),
     country: type === "" ? z.string().optional() : z.string().max(20),
   });
+
+export const createFormSchema = z.object({
+  name: z.string().min(2),
+  price: z.string(),
+  type: z.string().min(5).max(5),
+  category: z.string().min(3),
+  description: z.string().min(10).max(50),
+});

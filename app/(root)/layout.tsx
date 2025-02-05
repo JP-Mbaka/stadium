@@ -24,7 +24,7 @@ export default function RootLayout({
               <div className="dark:bg-emerald-800 rounded-full p-1">
                 <Image src="/stadium.png" alt="logo" height={45} width={40} />
               </div>
-              <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl px-2">
+              <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl pt-1 px-2">
                 Stadium
               </h1>
             </div>

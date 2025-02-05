@@ -1,8 +1,9 @@
-import { AuthFormSchema } from "@/app/types";
+import { createFormSchema } from "@/app/types";
 import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -10,32 +11,33 @@ import React from "react";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 
-const FormSchema = AuthFormSchema("Sign-Up");
+// const FormSchema = createFormSchema;
 
 interface CustomInputTypes {
-  control: Control<z.infer<typeof FormSchema>>;
-  name: FieldPath<z.infer<typeof FormSchema>>;
+  control: Control<z.infer<typeof createFormSchema>>;
+  name: FieldPath<z.infer<typeof createFormSchema>>;
   placeholder: string;
+  label: string;
 }
 
-function AuthCustomInput({ control, name, placeholder }: CustomInputTypes) {
-  console.log(FormSchema);
+function TicketsCustomInput({
+  control,
+  name,
+  placeholder,
+  label,
+}: CustomInputTypes) {
+  console.log(createFormSchema);
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
         <FormItem>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input
               {...field}
-              type={
-                name.match("password")
-                  ? "password"
-                  : name.match("confirmPassword")
-                  ? "password"
-                  : "text"
-              }
+              type={name.match("price") ? "number" : "text"}
               placeholder={placeholder}
               className="p-3"
             />
@@ -47,4 +49,4 @@ function AuthCustomInput({ control, name, placeholder }: CustomInputTypes) {
   );
 }
 
-export default AuthCustomInput;
+export default TicketsCustomInput;
