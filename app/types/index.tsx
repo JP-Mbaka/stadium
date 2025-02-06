@@ -25,6 +25,10 @@ export declare type DropdownProps = {
   dropdowns: onlyMe[];
   type?: string;
 };
+export declare type ChartLabel = {
+  label: string;
+  value: number;
+};
 
 export const AuthFormSchema = (type: string) =>
   z.object({

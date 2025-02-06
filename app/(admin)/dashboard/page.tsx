@@ -1,4 +1,24 @@
+import ChartComponents from "@/app/components/chartComponents";
+import Dropdown from "@/app/components/ui/dropdownComponent";
+import { DropdownActivityData, DropdownDashboardStatus } from "@/app/constants/data";
+import { ChartLabel } from "@/app/types";
 import React from "react";
+
+const chartData: ChartLabel[] = [
+  { label: "January", value: 186 },
+  { label: "February", value: 86 },
+  { label: "March", value: 67 },
+  { label: "April", value: 96 },
+  { label: "May", value: 146 },
+  { label: "June", value: 168 },
+];
+
+const chartConfig = {
+  value: {
+    label: "Sales",
+    color: "bg-emerald-800",
+  },
+};
 
 function AdminPage() {
   return (
@@ -7,7 +27,16 @@ function AdminPage() {
         <h1>Dashboard</h1>
         <h1>AdminView</h1>
       </div>
-      <div>Graphs & Z-index dropdowns</div>
+      <div className="relative inline-block h-full w-full">
+        <div className="absolute top-4 left-24 right-24 flex justify-evenly z-20">
+          <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
+          <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
+          <Dropdown dropdowns={DropdownDashboardStatus.dropdowns} type="event" />
+        </div>
+        <div className=" ">
+          <ChartComponents chartConfig={chartConfig} chartData={chartData} />
+        </div>
+      </div>
     </section>
   );
 }

@@ -30,7 +30,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
         <div className="p-4 flex justify-center items-center border border-b-emerald-800">
           <Link href={"/"}>
             <div className="flex items-center gap-2 ">
-              <div className="dark:bg-emerald-800 rounded-full p-1">
+              <div className="dark:bg-emerald-800 rounded-full p-1 w-auto">
                 <Image src="/stadium.png" alt="logo" height={45} width={40} />
               </div>
               <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl pt-1 px-2">

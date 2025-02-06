@@ -24,3 +24,7 @@ export const DropdownTimeData: DropdownProps = {
     { title: "Night" },
   ],
 };
+
+export const DropdownDashboardStatus: DropdownProps = {
+  dropdowns: [{ title: "expired" }, { title: "active" }, { title: "pending" }],
+};

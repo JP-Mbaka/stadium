@@ -21,7 +21,7 @@ export default function RootLayout({
         <nav className="flex justify-between border px-24 max-sm:px-8 py-4 shadow-md">
           <Link href={"/"}>
             <div className="flex items-center gap-2 ">
-              <div className="dark:bg-emerald-800 rounded-full p-1">
+              <div className="dark:bg-emerald-800 rounded-full p-1  w-auto">
                 <Image src="/stadium.png" alt="logo" height={45} width={40} />
               </div>
               <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl pt-1 px-2">
@@ -51,7 +51,7 @@ export default function RootLayout({
           <div className="flex flex-col max-sm:gap-2 gap-8 justify-center ">
             <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
             <Dropdown dropdowns={DropdownTimeData.dropdowns} />
-            <SideButtonComponent title="Date" />{" "}
+            <SideButtonComponent title="Date" />
             <div className="hidden justify-center w-full max-sm:flex">
               <div className="flex justify-evenly border rounded-md px-2 py-1.5 bg-slate-100">
                 <input
