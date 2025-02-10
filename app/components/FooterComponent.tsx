@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { navLinkData, socialLinkData } from "../constants/data";
 import Link from "next/link";
-import { NavLinkProps } from "../types";
+import { NavLinkProps } from "../../types";
 
 const FooterComponent = () => {
   return (
@@ -18,11 +18,13 @@ const FooterComponent = () => {
         </div>
         <div className="flex gap-4 font-semibold">
           {socialLinkData.map((data) => (
-            <div
-              key={data.link}
-              className="rounded-full px-4 py-2 bg-white sha"
-            >
-              {data.link[0]}
+            <div key={data.link} className="rounded-full p-2 bg-white sha">
+              <Image
+                src={data.linkImg!}
+                alt={data.link}
+                width={25}
+                height={25}
+              ></Image>
             </div>
           ))}
         </div>

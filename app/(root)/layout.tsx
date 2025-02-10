@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavLinkProps } from "../types";
+import { NavLinkProps } from "../../types";
 import {
   DropdownActivityData,
   DropdownTimeData,

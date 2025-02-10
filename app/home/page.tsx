@@ -1,9 +1,21 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
 import FooterComponent from "../components/FooterComponent";
+import { getLoggedInUser } from "@/lib/actions/user/auth.action";
+import { SignUpParams } from "@/types";
 
 function HomePage() {
+  const [user, setUser] = useState<SignUpParams>();
+
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      setUser(JSON.parse(await getLoggedInUser()));
+    };
+
+    fetchLoggedInUser();
+  }, [user]);
   return (
     <>
       <section className="h-screen px-24 py-4">
@@ -12,7 +24,7 @@ function HomePage() {
             <div className="bg-white rounded-full h-28 w-28"></div>
             <div>
               <h2 className="text-slate-200 text-2xl font-mochiyPopOne font-semibold">
-                Emeka Mbaka
+                {user?.firstName} {user?.lastName}
               </h2>
               <span className="font-light font-mono text-green-300">
                 Lagos State, Nigeria

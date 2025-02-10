@@ -30,8 +30,8 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
         <div className="p-4 flex justify-center items-center border border-b-emerald-800">
           <Link href={"/"}>
             <div className="flex items-center gap-2 ">
-              <div className="dark:bg-emerald-800 rounded-full p-1 w-auto">
-                <Image src="/stadium.png" alt="logo" height={45} width={40} />
+              <div className="dark:bg-emerald-800 rounded-full p-1  w-auto">
+                <Image src="/stadium.png" alt="logo" height={50} width={60} />
               </div>
               <h1 className="font-mochiyPopOne font-bold dark:text-slate-300 text-emerald-800 text-2xl pt-1 px-2">
                 Stadium
@@ -46,7 +46,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
               isDashboardRoute && "active:justify-center active:bg-emerald-800 "
             } hover:justify-center flex gap-2 hover:bg-emerald-800 font-poppins hover:text-slate-100`}
           >
-            <Image src="/stadium.png" alt="logo" height={25} width={20} />
+            <Image src="/dashboard.svg" alt="logo" height={25} width={20} />
             <h2> Dashboard</h2>
           </Link>
           <Link
@@ -55,7 +55,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
               isTicketRoute && "active:justify-center active:bg-emerald-800 "
             } hover:justify-center flex gap-2 hover:bg-emerald-800 font-poppins hover:text-slate-100`}
           >
-            <Image src="/stadium.png" alt="logo" height={25} width={20} />
+            <Image src="/ticket.svg" alt="logo" height={25} width={20} />
             <h2> Tickets</h2>
           </Link>
           <Link
@@ -64,7 +64,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
               isHistoryRoute && "active:justify-center active:bg-emerald-800 "
             } hover:justify-center flex gap-2 hover:bg-emerald-800 font-poppins hover:text-slate-100`}
           >
-            <Image src="/stadium.png" alt="logo" height={25} width={20} />
+            <Image src="/history.svg" alt="logo" height={25} width={20} />
             <h2> History</h2>
           </Link>
         </div>

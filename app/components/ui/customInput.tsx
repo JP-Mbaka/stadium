@@ -1,4 +1,4 @@
-import { AuthFormSchema } from "@/app/types";
+import { AuthFormSchema } from "@/types";
 import {
   FormControl,
   FormField,

@@ -17,15 +17,16 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 
-type TicketsType = {
+type HistoryType = {
   id: string;
   name: string;
   type: "Event" | "Sport";
   price: number;
+  date: string;
   status: "Pending" | "Processing" | "Success" | "Failed";
 };
 
-const columns: ColumnDef<TicketsType>[] = [
+const columns: ColumnDef<HistoryType>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -42,14 +43,19 @@ const columns: ColumnDef<TicketsType>[] = [
     accessorKey: "status",
     header: "Status",
   },
+  {
+    accessorKey: "date",
+    header: "Date",
+  },
 ];
 
-export const payments: TicketsType[] = [
+export const history: HistoryType[] = [
   {
     id: "728ed52f",
     name: "Bolato Dance",
     type: "Sport",
     price: 100,
+    date: "Mon 12 July 12:03 PM",
     status: "Pending",
   },
   {
@@ -57,14 +63,15 @@ export const payments: TicketsType[] = [
     name: "Davido Concert",
     type: "Event",
     price: 100,
+    date: "Mon 12 July 12:03 PM",
     status: "Success",
   },
   // ...
 ];
-function TicketingTable() {
+function HistoryTable() {
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={payments} />
+      <DataTable columns={columns} data={history} />
     </div>
   );
 }
@@ -160,4 +167,4 @@ export function DataTable<TData, TValue>({
   );
 }
 
-export default TicketingTable;
+export default HistoryTable;

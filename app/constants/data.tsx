@@ -1,4 +1,4 @@
-import { DropdownProps, NavLinkProps } from "../types";
+import { DropdownProps, NavLinkProps } from "../../types";
 
 export const navLinkData: NavLinkProps[] = [
   { link: "TICKETS", linkURL: "#" },
@@ -7,9 +7,9 @@ export const navLinkData: NavLinkProps[] = [
 ];
 
 export const socialLinkData: NavLinkProps[] = [
-  { link: "Facebook", linkURL: "#" },
-  { link: "Instagram", linkURL: "#" },
-  { link: "Twitter", linkURL: "#" },
+  { link: "Facebook", linkURL: "#", linkImg: "/facebook.svg" },
+  { link: "Instagram", linkURL: "#", linkImg: "/instagram.svg" },
+  { link: "Twitter", linkURL: "#", linkImg: "x.svg" },
 ];
 
 export const DropdownActivityData: DropdownProps = {

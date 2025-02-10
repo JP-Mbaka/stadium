@@ -1,4 +1,5 @@
 import React from "react";
+import HistoryTable from "./components/HistoryTable";
 
 function HistoryPage() {
   return (
@@ -7,7 +8,9 @@ function HistoryPage() {
         <h1>History</h1>
         <h1>AdminView</h1>
       </div>
-      <div> History Tables & Z-index dropdowns</div>
+      <div className="px-4 h-[85vh]">
+        <HistoryTable />
+      </div>
     </section>
   );
 }

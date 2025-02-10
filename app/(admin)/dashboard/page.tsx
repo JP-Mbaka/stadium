@@ -1,7 +1,10 @@
 import ChartComponents from "@/app/components/chartComponents";
 import Dropdown from "@/app/components/ui/dropdownComponent";
-import { DropdownActivityData, DropdownDashboardStatus } from "@/app/constants/data";
-import { ChartLabel } from "@/app/types";
+import {
+  DropdownActivityData,
+  DropdownDashboardStatus,
+} from "@/app/constants/data";
+import { ChartLabel } from "@/types";
 import React from "react";
 
 const chartData: ChartLabel[] = [
@@ -31,7 +34,10 @@ function AdminPage() {
         <div className="absolute top-4 left-24 right-24 flex justify-evenly z-20">
           <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
           <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
-          <Dropdown dropdowns={DropdownDashboardStatus.dropdowns} type="event" />
+          <Dropdown
+            dropdowns={DropdownDashboardStatus.dropdowns}
+            type="event"
+          />
         </div>
         <div className=" ">
           <ChartComponents chartConfig={chartConfig} chartData={chartData} />

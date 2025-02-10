@@ -1,6 +1,6 @@
 import React from "react";
 import CardComponent from "./CardComponent";
-import { ActivityProps, MyEvents } from "../types";
+import { ActivityProps, MyEvents } from "../../types";
 import Link from "next/link";
 
 const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {

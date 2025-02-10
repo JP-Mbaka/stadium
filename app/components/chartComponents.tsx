@@ -8,7 +8,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { BarChart, CartesianGrid, XAxis, Bar, LabelList } from "recharts";
-import { ChartLabel } from "../types";
+import { ChartLabel } from "../../types";
 
 interface ChartPageProps {
   chartData: ChartLabel[];

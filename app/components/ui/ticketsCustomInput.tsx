@@ -1,4 +1,4 @@
-import { createFormSchema } from "@/app/types";
+import { createFormSchema } from "@/types";
 import {
   FormControl,
   FormField,

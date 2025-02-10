@@ -30,15 +30,34 @@ export declare type ChartLabel = {
   value: number;
 };
 
+export declare type SignUpParams = {
+  firstName: string;
+  lastName: string;
+  state: string;
+  country: string;
+  email: string;
+  password: string;
+};
+export declare type signInProps = {
+  email: string;
+  password: string;
+};
+
+export declare interface getUserInfoProps {
+  userId: string;
+}
+
 export const AuthFormSchema = (type: string) =>
   z.object({
+    confirmPassword:
+      type === "Login" ? z.string().optional() : z.string().min(8),
+    firstName: type === "Login" ? z.string().optional() : z.string().max(50),
+    lastName: type === "Login" ? z.string().optional() : z.string().max(50),
+    state: type === "Login" ? z.string().optional() : z.string().max(20),
+    country: type === "Login" ? z.string().optional() : z.string().max(20),
+
     email: z.string().email(), //{ message: "enter a valid email" }
     password: z.string().min(8), //{ message: "Password must be more than 8 characters" }
-    confirmPassword: type === "" ? z.string().optional() : z.string().min(8),
-    firstName: type === "" ? z.string().optional() : z.string().max(50),
-    lastName: type === "" ? z.string().optional() : z.string().max(50),
-    state: type === "" ? z.string().optional() : z.string().max(20),
-    country: type === "" ? z.string().optional() : z.string().max(20),
   });
 
 export const createFormSchema = z.object({

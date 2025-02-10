@@ -9,16 +9,18 @@ function TicketsPage() {
         <h1>Tickets</h1>
         <h1>AdminView</h1>
       </div>
-      <div>
-        <TicketingTable />
-      </div>
-      <div className="flex justify-end px-24">
-        <Link
-          href={"/tickets/new"}
-          className="max-sm:hidden border border-emerald-800 text-emerald-800 font-poppins px-2 py-2 rounded-md"
-        >
-          Create Tickets
-        </Link>
+      <div className="relative overflow-y-auto">
+        <div className="px-4 h-[85vh]">
+          <TicketingTable />
+        </div>
+        <div className="flex justify-end px-4">
+          <Link
+            href={"/tickets/new"}
+            className="max-sm:hidden border border-emerald-800 text-emerald-800 font-poppins px-2 py-2 rounded-md"
+          >
+            Create Tickets
+          </Link>
+        </div>
       </div>
     </section>
   );
