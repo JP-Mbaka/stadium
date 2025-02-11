@@ -1,27 +1,67 @@
 "use client";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { createFormSchema } from "../../types";
+import { createFormSchema, Ticket } from "../../types";
 import TicketsCustomInput from "./ui/ticketsCustomInput";
+import { createTicket, editTicket } from "@/lib/actions/user/ticket.action";
+import { useRouter } from "next/navigation";
+declare interface CreateTicketFormProps {
+  isEdit: boolean;
+  ticket?: Ticket;
+}
 
-function CreateTicketFormCard() {
+function CreateTicketFormCard({ isEdit, ticket }: CreateTicketFormProps) {
+  // const [isEdit, setIsEdit] = useState(false);
+
+  // if (_ticket) setIsEdit(true);
+
+  const router = useRouter();
   const form = useForm<z.infer<typeof createFormSchema>>({
     resolver: zodResolver(createFormSchema),
     defaultValues: {
-      name: "",
-      price: "0",
-      type: "",
-      category: "",
-      description: "",
+      name: isEdit === false ? ticket?.name : "",
+      price: isEdit === false ? `${ticket?.price}` : "0",
+      type: isEdit === false ? ticket?.type : "",
+      category: isEdit === false ? ticket?.category : "",
+      description: isEdit === false ? ticket?.description : "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof createFormSchema>) {
-    console.log("GGGHHGHH:", data);
+  async function onSubmit(data: z.infer<typeof createFormSchema>) {
+    if (isEdit === false) {
+      const res = await editTicket({
+        tid: `${ticket?.$id}`,
+        name: data.name,
+        category: data.category,
+        description: data.description,
+        price: +data.price,
+        status: "Active",
+        type: data.type,
+      });
+
+      if (!res) return;
+
+      console.log("Ticket created successfully:", res);
+      router.push("/tickets");
+    } else {
+      const res = await createTicket({
+        name: data.name,
+        category: data.category,
+        description: data.description,
+        price: +data.price,
+        status: "Active",
+        type: data.type,
+      });
+
+      if (!res) return;
+
+      console.log("Ticket created successfully:", res);
+      router.push("/tickets");
+    }
   }
+
   return (
     <>
       <Form {...form}>
@@ -66,7 +106,7 @@ function CreateTicketFormCard() {
               type="submit"
               className="max-sm:hidden border border-emerald-800 text-emerald-800 font-poppins px-2 py-2 rounded-md"
             >
-              Create Tickets
+              {isEdit ? "Create" : "Edit"} Tickets
             </button>
           </div>
         </form>

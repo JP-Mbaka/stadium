@@ -1,12 +1,20 @@
 import CreateTicketFormCard from "@/app/components/CreateTicketFormCard";
+import { getSingleTicket } from "@/lib/actions/user/ticket.action";
+import { Ticket } from "@/types";
 import React from "react";
 
 async function TicketsPage({ params }: { params: { id: string } }) {
-  console.log("Params:", params.id);
+  // console.log("Params:", params.id);
   const isNew: boolean = (await params.id) === "new";
+  let ticket: Ticket;
 
   if (!(await params?.id)) {
     return <div>Error: No Item Not found</div>;
+  }
+
+  if ((await params?.id) !== "new") {
+    ticket = await getSingleTicket(await params.id);
+    if (!ticket) console.log("Error found:", ticket);
   }
 
   return (
@@ -17,7 +25,7 @@ async function TicketsPage({ params }: { params: { id: string } }) {
       </div>
       <main className="h-[88vh] w-full flex justify-center px-24 pt-8">
         {/* <div>Forms {await params.id}</div> */}
-        <CreateTicketFormCard />
+        <CreateTicketFormCard isEdit={isNew} ticket={ticket!} />
       </main>
     </section>
   );

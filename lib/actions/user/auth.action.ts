@@ -30,16 +30,16 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 };
 
 export async function getLoggedInUser() {
-  console.log("Executed Entry");
+  // console.log("Executed Entry");
   try {
-    console.log("Executed Started");
+    // console.log("Executed Started");
 
     const { account } = await createSessionClient();
     const result = await account.get();
-    console.log("Result of Cookies:", result);
+    // console.log("Result of Cookies:", result);
 
     const user = await getUserInfo({ userId: result.$id });
-    console.log("Fetched User:", user);
+    // console.log("Fetched User:", user);
 
     return parseStringify(user);
   } catch (error) {
@@ -99,7 +99,7 @@ export const Signup = async ({ password, ...userData }: SignUpParams) => {
       }
     );
 
-    console.log("New user step 2 creation completed", newUser);
+    // console.log("New user step 2 creation completed", newUser);
 
     const session = await account.createEmailPasswordSession(email, password);
 

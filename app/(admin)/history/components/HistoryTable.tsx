@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { ColumnDef, getPaginationRowModel } from "@tanstack/react-table";
 import {
   flexRender,
@@ -16,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { parseStringify } from "@/lib/util";
 
 type HistoryType = {
   id: string;
@@ -59,7 +61,7 @@ export const history: HistoryType[] = [
     status: "Pending",
   },
   {
-    id: "728ed52f",
+    id: "7458ed52f",
     name: "Davido Concert",
     type: "Event",
     price: 100,
@@ -91,6 +93,19 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const editItem = (itemID: string) => {
+    console.log("Edited", itemID);
+  };
+  const viewItem = (itemID: unknown) => {
+    console.log("View  Item", itemID);
+    console.log(
+      "Current View  Item",
+      history.filter((row) => row.id !== parseStringify(itemID).id)
+    );
+  };
+  const deleteItem = (itemID: string) => {
+    console.log("Deleted Item:", itemID);
+  };
   return (
     <>
       <div className="rounded-md border">
@@ -129,7 +144,41 @@ export function DataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
-                  <TableCell>A C T</TableCell>
+                  <TableCell className=" flex gap-4">
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => viewItem(row.original)}
+                    >
+                      <Image
+                        src="/view.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => editItem(row.id)}
+                    >
+                      <Image
+                        src="/edit.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => deleteItem(row.id)}
+                    >
+                      <Image
+                        src="/delete.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (

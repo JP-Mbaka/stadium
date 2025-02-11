@@ -4,18 +4,38 @@ import React, { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
 import FooterComponent from "../components/FooterComponent";
 import { getLoggedInUser } from "@/lib/actions/user/auth.action";
-import { SignUpParams } from "@/types";
+import { SignUpParams, Ticket } from "@/types";
+import { getTicket } from "@/lib/actions/user/ticket.action";
 
 function HomePage() {
   const [user, setUser] = useState<SignUpParams>();
+  const [tickets, setTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
+    // console.log("Program Entry");
+
     const fetchLoggedInUser = async () => {
-      setUser(JSON.parse(await getLoggedInUser()));
+      // console.log("Program started");
+      const res: SignUpParams = await getLoggedInUser();
+
+      setUser(res);
+
+      console.log("User Homepage:", user?.firstName);
+    };
+
+    const fetchALLTickets = async () => {
+      // console.log("Program started");
+      const res: Ticket[] = await getTicket();
+
+      setTickets(res);
+
+      console.log("Tickets Homepage:", res[0].name);
     };
 
     fetchLoggedInUser();
-  }, [user]);
+    fetchALLTickets();
+  }, [user, tickets]);
+
   return (
     <>
       <section className="h-screen px-24 py-4">
@@ -27,7 +47,7 @@ function HomePage() {
                 {user?.firstName} {user?.lastName}
               </h2>
               <span className="font-light font-mono text-green-300">
-                Lagos State, Nigeria
+                {user?.state}, {user?.country}
               </span>
             </div>
           </div>
@@ -41,9 +61,23 @@ function HomePage() {
           </div>
         </header>
         <section className="relative overflow-y-auto h-[65%]">
-          {["tes", "fr", "ef", "gr"].map((item, index) => (
-            <UserCard key={index} />
-          ))}
+          {!tickets || tickets.length === 0 ? (
+            <div className="flex justify-center items-center h-full bg-emerald-50">
+              No Record Found 
+            </div>
+          ) : (
+            tickets.map((item, index) => (
+              <UserCard
+                key={index}
+                name={item.name}
+                category={item.category}
+                description={item.description}
+                price={item.price}
+                type={item.type}
+                status={item.status}
+              />
+            ))
+          )}
         </section>
       </section>
       <FooterComponent />

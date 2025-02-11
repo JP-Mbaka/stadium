@@ -37,7 +37,7 @@ function TicketsCustomInput({
           <FormControl>
             <Input
               {...field}
-              type={name.match("price") ? "number" : "text"}
+              type={name === "price" ? "number" : "text"}
               placeholder={placeholder}
               className="p-3"
             />

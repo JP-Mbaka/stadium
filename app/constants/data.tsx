@@ -9,7 +9,7 @@ export const navLinkData: NavLinkProps[] = [
 export const socialLinkData: NavLinkProps[] = [
   { link: "Facebook", linkURL: "#", linkImg: "/facebook.svg" },
   { link: "Instagram", linkURL: "#", linkImg: "/instagram.svg" },
-  { link: "Twitter", linkURL: "#", linkImg: "x.svg" },
+  { link: "Twitter", linkURL: "#", linkImg: "/x.svg" },
 ];
 
 export const DropdownActivityData: DropdownProps = {

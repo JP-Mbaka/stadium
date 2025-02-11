@@ -1,8 +1,26 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TicketingTable from "./components/Ticketingtable";
+import { Ticket } from "@/types";
+import { getTicket } from "@/lib/actions/user/ticket.action";
 
 function TicketsPage() {
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+
+  useEffect(() => {
+    const fetchALLTickets = async () => {
+      // console.log("Program started");
+      const res: Ticket[] = await getTicket();
+
+      setTickets(res);
+
+      console.log("Tickets Homepage:", res[0].name);
+    };
+
+    fetchALLTickets();
+  }, []);
+
   return (
     <section>
       <div className="flex justify-between items-center px-6 py-8 text-4xl text-green-200 font-semibold w-full h-10 bg-emerald-800">
@@ -11,7 +29,7 @@ function TicketsPage() {
       </div>
       <div className="relative overflow-y-auto">
         <div className="px-4 h-[85vh]">
-          <TicketingTable />
+          <TicketingTable tickets={tickets} />
         </div>
         <div className="flex justify-end px-4">
           <Link

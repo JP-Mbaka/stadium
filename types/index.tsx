@@ -46,6 +46,16 @@ export declare type signInProps = {
 export declare interface getUserInfoProps {
   userId: string;
 }
+export declare interface Ticket {
+  [x: string]: unknown;
+  tid?: string;
+  name: string;
+  type: string;
+  price: number;
+  status: string;
+  category: string;
+  description: string;
+}
 
 export const AuthFormSchema = (type: string) =>
   z.object({
@@ -65,5 +75,5 @@ export const createFormSchema = z.object({
   price: z.string(),
   type: z.string().min(5).max(5),
   category: z.string().min(3),
-  description: z.string().min(10).max(50),
+  description: z.string().min(10),
 });

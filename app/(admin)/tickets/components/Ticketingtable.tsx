@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
 import { ColumnDef, getPaginationRowModel } from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
+import Image from "next/image";
 import {
   Table,
   TableBody,
@@ -16,16 +15,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Ticket } from "@/types";
+import { parseStringify } from "@/lib/util";
+import { useRouter } from "next/navigation";
+import { deleteTicket } from "@/lib/actions/user/ticket.action";
 
-type TicketsType = {
-  id: string;
-  name: string;
-  type: "Event" | "Sport";
-  price: number;
-  status: "Pending" | "Processing" | "Success" | "Failed";
-};
+type TicketsListParams = { tickets: Ticket[] };
 
-const columns: ColumnDef<TicketsType>[] = [
+const columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -44,27 +41,45 @@ const columns: ColumnDef<TicketsType>[] = [
   },
 ];
 
-export const payments: TicketsType[] = [
-  {
-    id: "728ed52f",
-    name: "Bolato Dance",
-    type: "Sport",
-    price: 100,
-    status: "Pending",
-  },
-  {
-    id: "728ed52f",
-    name: "Davido Concert",
-    type: "Event",
-    price: 100,
-    status: "Success",
-  },
-  // ...
-];
-function TicketingTable() {
+function TicketingTable({ tickets }: TicketsListParams) {
+  const router = useRouter();
+  const editItem = (itemID: string) => {
+    console.log("Edited", itemID);
+
+    const res = tickets.filter(
+      (row) => row.name === parseStringify(itemID).name
+    );
+
+    if (!res || res.length === 0) return;
+    router.push(`/tickets/${res[0].$id!}`);
+  };
+  const viewItem = (itemID: unknown) => {
+    console.log("View  Item", itemID);
+    const res = tickets.filter(
+      (row) => row.name === parseStringify(itemID).name
+    );
+
+    if (!res || res.length === 0) return;
+    router.push(`/item/${res[0].$id!}`);
+  };
+  const deleteItem = (itemID: string) => {
+    console.log("Deleted Item:", itemID);
+    const res = tickets.filter(
+      (row) => row.name === parseStringify(itemID).name
+    );
+
+    if (!res || res.length === 0) return;
+    deleteTicket(`${res[0].$id}`);
+  };
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={payments} />
+      <DataTable
+        columns={columns}
+        data={tickets}
+        viewItem={viewItem}
+        editItem={editItem}
+        deleteItem={deleteItem}
+      />
     </div>
   );
 }
@@ -73,10 +88,21 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  editItem: (term: string) => void;
+  viewItem: (term: string) => void;
+  deleteItem: (term: string) => void;
+}
+
+const DataTable = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  editItem,
+  viewItem,
+  deleteItem,
+}: DataTableProps<TData, TValue>): React.JSX.Element => {
   const table = useReactTable({
     data,
     columns,
@@ -122,7 +148,42 @@ export function DataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
-                  <TableCell>A C T</TableCell>
+
+                  <TableCell className=" flex gap-4">
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => viewItem(parseStringify(row.original))}
+                    >
+                      <Image
+                        src="/view.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => editItem(parseStringify(row.original))}
+                    >
+                      <Image
+                        src="/edit.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                    <Button
+                      className="bg-transparent border-transparent"
+                      onClick={() => deleteItem(parseStringify(row.original))}
+                    >
+                      <Image
+                        src="/delete.png"
+                        alt="logo"
+                        height={25}
+                        width={20}
+                      />
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
@@ -158,6 +219,6 @@ export function DataTable<TData, TValue>({
       </div>
     </>
   );
-}
+};
 
 export default TicketingTable;
