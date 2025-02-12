@@ -9,7 +9,7 @@ export declare type MyEvents = {
 
 export declare type ActivityProps = {
   name: string;
-  activity: MyEvents[];
+  activity?: Ticket[];
 };
 
 export declare type NavLinkProps = {

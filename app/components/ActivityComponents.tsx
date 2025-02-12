@@ -1,9 +1,15 @@
-import React from "react";
+"use client";
 import CardComponent from "./CardComponent";
-import { ActivityProps, MyEvents } from "../../types";
+import { ActivityProps, Ticket } from "../../types";
 import Link from "next/link";
 
 const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
+  // const [onlyTickets, setOnlyTickets] = useState(false);
+  // const [onlyEvents, setOnlyEvents] = useState(false);
+  // const [onlySports, setOnlySports] = useState(false);
+  // const [all, setAll] = useState(true);
+
+  if (!activity || activity.length === 0) <div>Error</div>;
   return (
     <div>
       <div className="border  border-b-emerald-800 border-transparent w-full max-sm:flex max-sm:justify-between">
@@ -16,14 +22,14 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
       </div>
       <div className="flex justify-between md:justify-end flex-wrap gap-4 items-center px-8 py-4">
         <div className="w-full flex  flex-wrap max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
-          {activity.map((events: MyEvents) => (
-            <div key={events.title}>
-              <Link href={`/item/${events.rate}`}>
+          {activity?.map((events: Ticket, index) => (
+            <div key={index}>
+              <Link href={`/item/${events.tid}`}>
                 <CardComponent
-                  title={events.title}
-                  date={events.date}
+                  title={events.name}
+                  date={`${events.$createdAt}`}
                   price={events.price}
-                  rate={events.rate}
+                  rate={0.0} //rate
                 />
               </Link>
             </div>
