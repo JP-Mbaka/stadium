@@ -83,10 +83,10 @@ function TicketingTable({ tickets }: TicketsListParams) {
     </div>
   );
 }
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
+// interface DataTableProps<TData, TValue> {
+//   columns: ColumnDef<TData, TValue>[];
+//   data: TData[];
+// }
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

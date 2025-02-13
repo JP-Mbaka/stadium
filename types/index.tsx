@@ -31,6 +31,7 @@ export declare type ChartLabel = {
 };
 
 export declare type SignUpParams = {
+  [x: string]: unknown;
   firstName: string;
   lastName: string;
   state: string;
@@ -55,6 +56,17 @@ export declare interface Ticket {
   status: string;
   category: string;
   description: string;
+}
+
+export declare interface HistoryProps {
+  [x: string]: unknown;
+  userId: string;
+  eventId: string;
+  name: string;
+  ticket: string;
+  type: string;
+  price: number;
+  status: string;
 }
 
 export const AuthFormSchema = (type: string) =>

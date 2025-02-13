@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { ColumnDef, getPaginationRowModel } from "@tanstack/react-table";
 import {
   flexRender,
@@ -17,18 +17,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { parseStringify } from "@/lib/util";
+// import { parseStringify } from "@/lib/util";
+import { HistoryProps } from "@/types";
+// import { useRouter } from "next/navigation";
 
-type HistoryType = {
-  id: string;
-  name: string;
-  type: "Event" | "Sport";
-  price: number;
-  date: string;
-  status: "Pending" | "Processing" | "Success" | "Failed";
-};
+type HistoryType = { history: HistoryProps[] };
 
-const columns: ColumnDef<HistoryType>[] = [
+const columns: ColumnDef<HistoryProps>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -42,35 +37,36 @@ const columns: ColumnDef<HistoryType>[] = [
     header: "Price",
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "$id",
+    header: "Ticket ID",
   },
   {
-    accessorKey: "date",
+    accessorKey: "$createdAt",
     header: "Date",
   },
 ];
 
-export const history: HistoryType[] = [
-  {
-    id: "728ed52f",
-    name: "Bolato Dance",
-    type: "Sport",
-    price: 100,
-    date: "Mon 12 July 12:03 PM",
-    status: "Pending",
-  },
-  {
-    id: "7458ed52f",
-    name: "Davido Concert",
-    type: "Event",
-    price: 100,
-    date: "Mon 12 July 12:03 PM",
-    status: "Success",
-  },
-  // ...
-];
-function HistoryTable() {
+// export const history: HistoryType[] = [
+//   {
+//     id: "728ed52f",
+//     name: "Bolato Dance",
+//     type: "Sport",
+//     price: 100,
+//     date: "Mon 12 July 12:03 PM",
+//     status: "Pending",
+//   },
+//   {
+//     id: "7458ed52f",
+//     name: "Davido Concert",
+//     type: "Event",
+//     price: 100,
+//     date: "Mon 12 July 12:03 PM",
+//     status: "Success",
+//   },
+//   // ...
+// ];
+function HistoryTable({ history }: HistoryType) {
+  // const router = useRouter();
   return (
     <div className="container mx-auto py-10">
       <DataTable columns={columns} data={history} />
@@ -93,19 +89,19 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const editItem = (itemID: string) => {
-    console.log("Edited", itemID);
-  };
-  const viewItem = (itemID: unknown) => {
-    console.log("View  Item", itemID);
-    console.log(
-      "Current View  Item",
-      history.filter((row) => row.id !== parseStringify(itemID).id)
-    );
-  };
-  const deleteItem = (itemID: string) => {
-    console.log("Deleted Item:", itemID);
-  };
+  // const editItem = (itemID: string) => {
+  //   console.log("Edited", itemID);
+  // };
+  // const viewItem = (itemID: unknown) => {
+  //   console.log("View  Item", itemID);
+  //   console.log(
+  //     "Current View  Item",
+  //     history.filter((row) => row.id !== parseStringify(itemID).id)
+  //   );
+  // };
+  // const deleteItem = (itemID: string) => {
+  //   console.log("Deleted Item:", itemID);
+  // };
   return (
     <>
       <div className="rounded-md border">
@@ -125,7 +121,7 @@ export function DataTable<TData, TValue>({
                     </TableHead>
                   );
                 })}
-                <TableHead>Action</TableHead>
+                {/* <TableHead>Action</TableHead> */}
               </TableRow>
             ))}
           </TableHeader>
@@ -144,10 +140,10 @@ export function DataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
-                  <TableCell className=" flex gap-4">
+                  {/* <TableCell className=" flex gap-4">
                     <Button
                       className="bg-transparent border-transparent"
-                      onClick={() => viewItem(row.original)}
+                      // onClick={() => viewItem(row.original)}
                     >
                       <Image
                         src="/view.png"
@@ -158,7 +154,7 @@ export function DataTable<TData, TValue>({
                     </Button>
                     <Button
                       className="bg-transparent border-transparent"
-                      onClick={() => editItem(row.id)}
+                      // onClick={() => editItem(row.id)}
                     >
                       <Image
                         src="/edit.png"
@@ -169,7 +165,7 @@ export function DataTable<TData, TValue>({
                     </Button>
                     <Button
                       className="bg-transparent border-transparent"
-                      onClick={() => deleteItem(row.id)}
+                      // onClick={() => deleteItem(row.id)}
                     >
                       <Image
                         src="/delete.png"
@@ -178,7 +174,7 @@ export function DataTable<TData, TValue>({
                         width={20}
                       />
                     </Button>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))
             ) : (

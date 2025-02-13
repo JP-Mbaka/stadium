@@ -1,6 +1,8 @@
+"use  client";
 import { getSingleTicket } from "@/lib/actions/user/ticket.action";
 import { Ticket } from "@/types";
 import React from "react";
+import HistoryButton from "./component/button";
 
 async function DetailPage({ params }: { params: { id: string } }) {
   console.log("Params:", params);
@@ -31,9 +33,15 @@ async function DetailPage({ params }: { params: { id: string } }) {
           <h1 className="text-3xl text-emerald-800 font-extrabold">
             &#x20A6;{ticket!.price}
           </h1>
-          <button className="max-sm:hidden border border-emerald-800 text-emerald-800 w-[100px] font-poppins px-2 py-2 rounded-md">
-            Buy Ticket
-          </button>
+          <HistoryButton
+            eventId={`${ticket!.$id}`}
+            userId=""
+            name=""
+            ticket={ticket!.name}
+            price={ticket!.price}
+            status={ticket!.status}
+            type={ticket!.type}
+          />
         </div>
       </div>
       {/* <div>DetailPage{await params?.id}</div> */}

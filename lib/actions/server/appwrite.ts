@@ -23,10 +23,13 @@ export async function createSessionClient() {
   };
 }
 export async function createAdminClient() {
+  // console.log("Print Client Has STartted");
   const client = new Client()
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
     .setKey(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_KEY!);
+
+  // console.log("Print Client:", client);
 
   return {
     get account() {

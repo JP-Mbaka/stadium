@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
 import FooterComponent from "../components/FooterComponent";
 import { getLoggedInUser } from "@/lib/actions/user/auth.action";
-import { SignUpParams, Ticket } from "@/types";
-import { getTicket } from "@/lib/actions/user/ticket.action";
+import { HistoryProps, SignUpParams } from "@/types";
+import { getSingleHistory } from "@/lib/actions/user/history.action";
 
 function HomePage() {
   const [user, setUser] = useState<SignUpParams>();
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [histories, setHistory] = useState<HistoryProps[]>([]);
 
   useEffect(() => {
     // console.log("Program Entry");
@@ -20,21 +20,22 @@ function HomePage() {
 
       setUser(res);
 
-      console.log("User Homepage:", user?.firstName);
+      console.log("User Homepage:", user!.firstName);
+      fetchALLHistory();
     };
 
-    const fetchALLTickets = async () => {
-      // console.log("Program started");
-      const res: Ticket[] = await getTicket();
+    const fetchALLHistory = async () => {
+      console.log("Program started:", user);
+      //userId
+      const res: HistoryProps[] = await getSingleHistory(`${user?.$id}`);
 
-      setTickets(res);
+      setHistory(res);
 
-      console.log("Tickets Homepage:", res[0].name);
+      // console.log("Tickets Homepage:", res[0].ticket);
     };
 
     fetchLoggedInUser();
-    fetchALLTickets();
-  }, [user, tickets]);
+  }, [user, histories]);
 
   return (
     <>
@@ -61,17 +62,18 @@ function HomePage() {
           </div>
         </header>
         <section className="relative overflow-y-auto h-[65%]">
-          {!tickets || tickets.length === 0 ? (
+          {!histories || histories.length === 0 ? (
             <div className="flex justify-center items-center h-full bg-emerald-50">
-              No Record Found 
+              No Record Found
             </div>
           ) : (
-            tickets.map((item, index) => (
+            histories.map((item, index) => (
               <UserCard
                 key={index}
                 name={item.name}
-                category={item.category}
-                description={item.description}
+                eventId={item.eventId}
+                ticket={item.ticket}
+                userId={item.userId}
                 price={item.price}
                 type={item.type}
                 status={item.status}

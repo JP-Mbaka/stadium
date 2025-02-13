@@ -24,7 +24,7 @@ const ActivityComponents: React.FC<ActivityProps> = ({ activity, name }) => {
         <div className="w-full flex  flex-wrap max-sm:flex-col max-sm:justify-center max-sm:items-center gap-5">
           {activity?.map((events: Ticket, index) => (
             <div key={index}>
-              <Link href={`/item/${events.tid}`}>
+              <Link href={`/item/${events.$id}`}>
                 <CardComponent
                   title={events.name}
                   date={`${events.$createdAt}`}
