@@ -4,16 +4,18 @@ import { Ticket } from "@/types";
 import React from "react";
 import HistoryButton from "./component/button";
 
-async function DetailPage({ params }: { params: { id: string } }) {
+type tParams = Promise<{ id: string }>;
+
+async function DetailPage({ params }: { params: tParams }) {
   console.log("Params:", params);
   let ticket: Ticket;
 
-  if (!(await params?.id)) {
+  if (!(await (await params)?.id)) {
     return <div>Error: No Item Not found</div>;
   }
 
-  if ((await params?.id) !== "new") {
-    ticket = await getSingleTicket(await params.id);
+  if ((await (await params)?.id) !== "new") {
+    ticket = await getSingleTicket(await (await params).id);
     if (!ticket) console.log("Error found:", ticket);
   }
 
