@@ -5,15 +5,15 @@ import React from "react";
 
 async function TicketsPage({ params }: { params: { id: string } }) {
   // console.log("Params:", params.id);
-  const isNew: boolean = (await params.id) === "new";
+  const isNew: boolean = params.id === "new";
   let ticket: Ticket;
 
-  if (!(await params?.id)) {
+  if (!params?.id) {
     return <div>Error: No Item Not found</div>;
   }
 
-  if ((await params?.id) !== "new") {
-    ticket = await getSingleTicket(await params.id);
+  if (params?.id !== "new") {
+    ticket = await getSingleTicket(params.id);
     if (!ticket) console.log("Error found:", ticket);
   }
 
