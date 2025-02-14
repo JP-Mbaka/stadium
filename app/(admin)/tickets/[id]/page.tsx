@@ -3,17 +3,20 @@ import { getSingleTicket } from "@/lib/actions/user/ticket.action";
 import { Ticket } from "@/types";
 import React from "react";
 
-async function TicketsPage({ params }: { params: { id: string } }) {
+type tParams = Promise<{ id: string }>;
+
+async function TicketsPage({ params }: { params: tParams }) {
   // console.log("Params:", params.id);
-  const isNew: boolean = params.id === "new";
+
+  const isNew: boolean = (await params).id === "new";
   let ticket: Ticket;
 
-  if (!params?.id) {
+  if (!(await params)?.id) {
     return <div>Error: No Item Not found</div>;
   }
 
-  if (params?.id !== "new") {
-    ticket = await getSingleTicket(params.id);
+  if ((await params)?.id !== "new") {
+    ticket = await getSingleTicket((await params).id);
     if (!ticket) console.log("Error found:", ticket);
   }
 
