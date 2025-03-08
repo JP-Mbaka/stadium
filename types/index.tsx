@@ -23,6 +23,7 @@ export declare type onlyMe = {
 };
 export declare type DropdownProps = {
   dropdowns: onlyMe[];
+  onSelect: (option: string) => void;
   type?: string;
 };
 export declare type ChartLabel = {

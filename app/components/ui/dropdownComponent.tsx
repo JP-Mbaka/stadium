@@ -2,7 +2,7 @@
 import { DropdownProps } from "@/types";
 import React, { useState } from "react";
 
-const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type }) => {
+const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -13,8 +13,10 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdowns, type }) => {
   };
 
   const handleOptionClick = (option: string) => {
+    onSelect(option);
     setSelectedOption(option);
     setIsOpen(false);
+    console.log(option);
   };
 
   return (

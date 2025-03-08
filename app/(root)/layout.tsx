@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { NavLinkProps } from "../../types";
 import {
-  DropdownActivityData,
-  DropdownTimeData,
+  // DropdownActivityData,
+  // DropdownTimeData,
   navLinkData,
 } from "../constants/data";
-import Dropdown from "../components/ui/dropdownComponent";
-import SideButtonComponent from "../components/ui/sideButtonComponent";
+// import Dropdown from "../components/ui/dropdownComponent";
+// import SideButtonComponent from "../components/ui/sideButtonComponent";
 import Image from "next/image";
 import FooterComponent from "../components/FooterComponent";
 
@@ -40,41 +40,15 @@ export default function RootLayout({
                 </li>
               ))}
             </ul>
-            <div>login</div>
+            <div>
+              <Link href={"/login"}>LOGIN</Link>
+            </div>
           </div>
           <div className="items-center hidden max-sm:flex">B</div>
         </nav>
       </section>
 
-      <section className="flex w-full h-[94%] max-md:flex-col max-md:h-full max-sm:justify-center">
-        <section className="w-[16%] shadow-md flex flex-col items-center justify-between py-24 max-sm:shadow-none max-sm:w-full max-sm:py-2">
-          <div className="flex flex-col max-sm:gap-2 gap-8 justify-center ">
-            <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
-            <Dropdown dropdowns={DropdownTimeData.dropdowns} />
-            <SideButtonComponent title="Date" />
-            <div className="hidden justify-center w-full max-sm:flex">
-              <div className="flex justify-evenly border rounded-md px-2 py-1.5 bg-slate-100">
-                <input
-                  placeholder="search"
-                  className="max-sm:w-[300px] w-[450px]  bg-slate-100"
-                />
-                <Image
-                  src="/vercel.svg"
-                  alt="Vercel logo"
-                  height={25}
-                  width={25}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="max-sm:hidden">
-            <SideButtonComponent title="Sign-in" />
-          </div>
-        </section>
-        <section className="w-[80%] h-full pt-8 relative overflow-y-auto max-sm:w-full">
-          {children}
-        </section>
-      </section>
+      {children}
 
       <section>
         <FooterComponent />
