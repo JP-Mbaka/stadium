@@ -13,7 +13,12 @@ export const socialLinkData: NavLinkProps[] = [
 ];
 
 export const DropdownActivityData: DropdownProps = {
-  dropdowns: [{ title: "Tickets" }, { title: "Sports" }, { title: "Event" }],
+  dropdowns: [
+    { title: "All" },
+    { title: "Tickets" },
+    { title: "Sports" },
+    { title: "Event" },
+  ],
   onSelect: function (option: string): void {
     throw new Error(`Function not implemented.:${option}`);
   },

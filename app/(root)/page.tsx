@@ -6,13 +6,7 @@ import { getTicket } from "@/lib/actions/user/ticket.action";
 import FilterPage from "./filterPage";
 import Dropdown from "../components/ui/dropdownComponent";
 import SideButtonComponent from "../components/ui/sideButtonComponent";
-import { DropdownActivityData, DropdownTimeData } from "../constants/data";
-
-// const eventsList: MyEvents[] = [
-//   { title: "Johnny Depp", date: "Mon 16/02/25", price: 6000, rate: 3.5 },
-//   { title: "Houston Right", date: "Tues 16/02/25", price: 3000, rate: 3.5 },
-//   { title: "AFRIMAA", date: "Wed 16/02/25", price: 2500, rate: 3.5 },
-//   { title: "OSCAR AWARD", date: "Thurs 16/02/25", price: 1500, rate: 3.5 },
+import { DropdownActivityData } from "../constants/data";
 // ];
 const Home = () => {
   const [ticketList, setTicketList] = useState<Ticket[]>();
@@ -54,11 +48,11 @@ const Home = () => {
             type="event"
             onSelect={handleSelection}
           />
-          <Dropdown
+          {/* <Dropdown
             dropdowns={DropdownTimeData.dropdowns}
             onSelect={handleSelection}
-          />
-          <SideButtonComponent title="Date" />
+          /> */}
+          {/* <SideButtonComponent title="Date" /> */}
           <div className="hidden justify-center w-full max-sm:flex">
             <div className="flex justify-evenly border rounded-md px-2 py-1.5 bg-slate-100">
               <input
