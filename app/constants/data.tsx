@@ -7,9 +7,17 @@ export const navLinkData: NavLinkProps[] = [
 ];
 
 export const socialLinkData: NavLinkProps[] = [
-  { link: "Facebook", linkURL: "#", linkImg: "/facebook.svg" },
-  { link: "Instagram", linkURL: "#", linkImg: "/instagram.svg" },
-  { link: "Twitter", linkURL: "#", linkImg: "/x.svg" },
+  {
+    link: "Facebook",
+    linkURL: "https://web.facebook.com",
+    linkImg: "/facebook.svg",
+  },
+  {
+    link: "Instagram",
+    linkURL: "https://www.instagram.com/johnpaul_mbaka/",
+    linkImg: "/instagram.svg",
+  },
+  { link: "Twitter", linkURL: "https://x.com/home", linkImg: "/x.svg" },
 ];
 
 export const DropdownActivityData: DropdownProps = {
