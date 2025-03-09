@@ -1,9 +1,9 @@
 import { DropdownProps, NavLinkProps } from "../../types";
 
 export const navLinkData: NavLinkProps[] = [
-  { link: "TICKETS", linkURL: "#" },
-  { link: "SPORTS", linkURL: "#" },
-  { link: "EVENT", linkURL: "#" },
+  { link: "HOME", linkURL: "#" },
+  { link: "ABOUT-US", linkURL: "#" },
+  { link: "CAREER", linkURL: "#" },
 ];
 
 export const socialLinkData: NavLinkProps[] = [
@@ -14,6 +14,9 @@ export const socialLinkData: NavLinkProps[] = [
 
 export const DropdownActivityData: DropdownProps = {
   dropdowns: [{ title: "Tickets" }, { title: "Sports" }, { title: "Event" }],
+  onSelect: function (option: string): void {
+    throw new Error(`Function not implemented.:${option}`);
+  },
 };
 
 export const DropdownTimeData: DropdownProps = {
@@ -23,8 +26,14 @@ export const DropdownTimeData: DropdownProps = {
     { title: "Evening" },
     { title: "Night" },
   ],
+  onSelect: function (option: string): void {
+    throw new Error(`Function not implemented.:${option}`);
+  },
 };
 
 export const DropdownDashboardStatus: DropdownProps = {
   dropdowns: [{ title: "expired" }, { title: "active" }, { title: "pending" }],
+  onSelect: function (option: string): void {
+    throw new Error(`Function not implemented.:${option}`);
+  },
 };
