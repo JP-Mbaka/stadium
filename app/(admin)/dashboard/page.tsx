@@ -23,6 +23,8 @@ const chartConfig = {
   },
 };
 
+const handleClick = () => {};
+
 function AdminPage() {
   return (
     <section>
@@ -32,10 +34,19 @@ function AdminPage() {
       </div>
       <div className="relative inline-block h-full w-full">
         <div className="absolute top-4 left-24 right-24 flex justify-evenly z-20">
-          <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
-          <Dropdown dropdowns={DropdownActivityData.dropdowns} type="event" />
+          <Dropdown
+            dropdowns={DropdownActivityData.dropdowns}
+            onSelect={handleClick}
+            type="event"
+          />
+          <Dropdown
+            dropdowns={DropdownActivityData.dropdowns}
+            onSelect={handleClick}
+            type="event"
+          />
           <Dropdown
             dropdowns={DropdownDashboardStatus.dropdowns}
+            onSelect={handleClick}
             type="event"
           />
         </div>
