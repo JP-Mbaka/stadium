@@ -1,3 +1,4 @@
+"use client";
 import ChartComponents from "@/app/components/chartComponents";
 import Dropdown from "@/app/components/ui/dropdownComponent";
 import {
@@ -23,7 +24,9 @@ const chartConfig = {
   },
 };
 
-const handleClick = () => {};
+const handleClick = (option: string) => {
+  console.log("Selected in Parent:", option);
+};
 
 function AdminPage() {
   return (
