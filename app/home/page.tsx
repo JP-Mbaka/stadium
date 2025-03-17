@@ -6,10 +6,12 @@ import FooterComponent from "../components/FooterComponent";
 import { getLoggedInUser } from "@/lib/actions/user/auth.action";
 import { HistoryProps, SignUpParams } from "@/types";
 import { getSingleHistory } from "@/lib/actions/user/history.action";
+import { useRouter } from "next/navigation";
 
 function HomePage() {
   const [user, setUser] = useState<SignUpParams>();
   const [histories, setHistory] = useState<HistoryProps[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     // console.log("Program Entry");
@@ -17,6 +19,8 @@ function HomePage() {
     const fetchLoggedInUser = async () => {
       // console.log("Program started");
       const res: SignUpParams = await getLoggedInUser();
+
+      if (!res) router.replace("login");
 
       setUser(res);
 

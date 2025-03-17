@@ -1,14 +1,18 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
-import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { getLoggedInUser } from "@/lib/actions/user/auth.action";
+import { SignUpParams } from "@/types";
 
 function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const route = usePathname;
+  const router = useRouter();
   const [isDashboardRoute, setDashboardRoute] = useState(false);
   const [isTicketRoute, setTicketRoute] = useState(false);
   const [isHistoryRoute, setHistoryRoute] = useState(false);
+
   if (route.toString() === "/dashboard") {
     setDashboardRoute(true);
     setTicketRoute(false);
@@ -24,6 +28,17 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   } else {
     console.log(route.toString());
   }
+
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      // console.log("Program started");
+      const res: SignUpParams = await getLoggedInUser();
+
+      if (!res) router.replace("login");
+    };
+
+    fetchLoggedInUser();
+  });
   return (
     <section className="w-screen h-screen flex">
       <section className="h-full max-w-60 border border-r-emerald-800 ">
