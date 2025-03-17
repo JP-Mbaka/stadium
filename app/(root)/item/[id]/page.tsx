@@ -3,6 +3,7 @@ import { getSingleTicket } from "@/lib/actions/user/ticket.action";
 import { Ticket } from "@/types";
 import React from "react";
 import HistoryButton from "./component/button";
+import { formatDate1, formatTime12Hour } from "@/lib/utils";
 
 type tParams = Promise<{ id: string }>;
 
@@ -18,15 +19,24 @@ async function DetailPage({ params }: { params: tParams }) {
     ticket = await getSingleTicket(await (await params).id);
     if (!ticket) console.log("Error found:", ticket);
   }
-
+  const prop = new Date();
   return (
     <div className="flex flex-col px-24">
       <div className="flex flex-col justify-between h-[80svh] ">
         <div className="flex flex-col">
           <div className="bg-emerald-800 h-80 w-full"></div>
-          <h2 className="py-4 font-semibold font-montserratAlt text-lg text-left text-emerald-800">
-            {ticket!.type} | <span className="font-bold">{ticket!.name}</span>
-          </h2>
+          <div className="text-justify flex justify-between py-4 ">
+            <h2 className="font-semibold font-montserratAlt text-lg text-left text-emerald-800">
+              {ticket!.type} | <span className="font-bold">{ticket!.name}</span>
+            </h2>
+            <p className="font-poppins ">
+              {formatDate1(prop)} | {formatTime12Hour(prop)}
+            </p>
+          </div>
+          <p className="text-justify py-4">
+            Organizers:&nbsp;{"Helium Group"} | Event Venue:&nbsp;
+            {"Avocado Plain, National Stadium"}
+          </p>
           <p className="text-justify">
             Event description:&nbsp;{ticket!.description}
           </p>

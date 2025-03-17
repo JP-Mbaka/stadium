@@ -37,7 +37,7 @@ const Home = () => {
     };
 
     fetchTickets();
-  }, []);
+  });
 
   return (
     <section className="flex w-full h-[94%] max-md:flex-col max-md:h-full max-sm:justify-center">

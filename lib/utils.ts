@@ -20,3 +20,28 @@ export function interpretError(error: Error) {
   }
   return "An unexpected error occurred. Please try again.";
 }
+
+export function formatDate1(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  };
+
+  const formattedDate = date.toLocaleDateString("en-US", options);
+  const [weekday, month, day, year] = formattedDate.replace(",", "").split(" ");
+
+  return `${weekday} ${day} ${month} ${year}`;
+}
+
+export function formatDate2(date: Date): string {
+  return date.toISOString().split("T")[0]; // YYYY-MM-DD
+}
+export function formatTime12Hour(date: Date): string {
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, // Enables 12-hour format with AM/PM
+  });
+}

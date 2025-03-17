@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
-
+import { formatDate2, formatTime12Hour } from "@/lib/utils";
 
 type CardProps = {
   title: string;
@@ -11,14 +10,14 @@ type CardProps = {
 };
 
 const CardComponent: React.FC<CardProps> = ({ title, date, price, rate }) => {
+  const prop = new Date(date);
   return (
     <div className="flex flex-col justify-center gap-4 border border-emerald-800 rounded-md w-[200px] shadow-md">
-      <div className="w-full rounded-t-md bg-emerald-800 h-40">
-       
-      </div>
+      <div className="w-full rounded-t-md bg-emerald-800 h-40"></div>
       <div className="pb-4 px-4">
         <h2 className="font-montserratAlt font-semibold sm:text-lg">{title}</h2>
-        <p className="font-poppins">{date}</p>
+        <p className="font-poppins">{formatDate2(prop)}</p>{" "}
+        <p className="font-poppins">{formatTime12Hour(prop)}</p>
         <h3 className="font-montserratAlt font-semibold sm:text-xl text-emerald-800">
           $ {price}
         </h3>
