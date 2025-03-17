@@ -60,8 +60,8 @@ const Home = () => {
                 className="max-sm:w-[300px] w-[450px]  bg-slate-100"
               />
               <Image
-                src="/vercel.svg"
-                alt="Vercel logo"
+                src="/search.png"
+                alt="Search icon"
                 height={25}
                 width={25}
               />
@@ -83,7 +83,7 @@ const Home = () => {
                 />
                 <Image
                   src="/search.png"
-                  alt="Vercel logo"
+                  alt="Search icon"
                   height={25}
                   width={25}
                 />

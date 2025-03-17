@@ -10,15 +10,15 @@ type Activity = {
 };
 
 function FilterPage({ activity, ticketList, eventList, sportList }: Activity) {
-  return activity == "Tickets" ? (
+  return activity.match("Tickets") ? (
     <>
       <ActivityComponents name="Tickets" activity={ticketList} />
     </>
-  ) : activity == "Event" ? (
+  ) : activity.match("Event") ? (
     <>
       <ActivityComponents name="Events" activity={eventList} />
     </>
-  ) : activity == "Sports" ? (
+  ) : activity.match("Sports") ? (
     <>
       <ActivityComponents name="Sports" activity={sportList} />
     </>

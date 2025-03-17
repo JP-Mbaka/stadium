@@ -62,9 +62,16 @@ export const signIn = async ({ email, password }: signInProps) => {
 
     const user = await getUserInfo({ userId: session.userId });
 
+    if (!user.ok) {
+      throw new Error(`API Error: ${user.status} - ${user.statusText}`);
+    }
+
     return parseStringify(user);
   } catch (error) {
-    console.error("Error", error);
+    // console.error("Error", error);
+    throw new Error(
+      error instanceof Error ? error.message : "An unknown error occurred."
+    );
   }
 };
 

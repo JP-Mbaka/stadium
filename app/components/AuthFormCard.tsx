@@ -11,8 +11,11 @@ import { signIn, Signup } from "@/lib/actions/user/auth.action";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useNotification } from "@/app/components/ui/popupAlert";
+import { interpretError } from "@/lib/utils";
 
 function AuthFormCard({ type }: { type: string }) {
+  const { showNotification } = useNotification();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   // useState
@@ -26,37 +29,66 @@ function AuthFormCard({ type }: { type: string }) {
     const { email, password } = data;
     setIsLoading(true);
 
+    console.log("Working À1");
+
     if (type === "Login") {
-      console.log("signing DATA:", data);
-      const response = await signIn({ email, password });
+      try {
+        console.log("signing DATA:", data);
+        const response = await signIn({ email, password });
 
-      if (!response) return;
+        if (!response)
+          showNotification("An unexpected error occurred. Please try again.");
 
-      setIsLoading(false);
+        showNotification("User logged in successfully.");
 
-      console.log("Final Login Response DATA:", response);
+        setIsLoading(false);
 
-      if (response) router.push("/home");
+        console.log("Final Login Response DATA:", response);
+
+        if (response) router.push("/home");
+      } catch (error) {
+        console.log(`Testing testing: ${error}`);
+        const errorMessage = interpretError(error as Error);
+        showNotification(errorMessage);
+
+        setIsLoading(false);
+      }
     } else {
-      console.log("Signup Data:", data);
-      const userData = {
-        firstName: data.firstName!,
-        lastName: data.lastName!,
-        state: data.state!,
-        country: data.country!,
-        email: data.email,
-        password: data.password,
-      };
+      try {
+        console.log("Signup Data:", data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          state: data.state!,
+          country: data.country!,
+          email: data.email,
+          password: data.password,
+        };
 
-      const response = await Signup(userData);
+        if (data.confirmPassword === data.password)
+          throw new Error(
+            `User Error:Password and Confirm Password is not exactly same`
+          );
 
-      if (!response) return;
+        const response = await Signup(userData);
 
-      setIsLoading(false);
+        if (!response)
+          showNotification("An unexpected error occurred. Please try again.");
 
-      console.log("Final Signup Response DATA:", response);
+        showNotification("Account created successfully.");
 
-      if (response) router.push("/home");
+        setIsLoading(false);
+
+        console.log("Final Signup Response DATA:", response);
+
+        if (response) router.push("/home");
+      } catch (error) {
+        console.log(`Testing testing: ${error}`);
+        const errorMessage = interpretError(error as Error);
+        showNotification(errorMessage);
+
+        setIsLoading(false);
+      }
     }
   }
   return (
